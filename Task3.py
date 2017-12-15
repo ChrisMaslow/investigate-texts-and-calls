@@ -39,3 +39,26 @@ with open('calls.csv', 'r') as f:
 to other fixed lines in Bangalore."
 注意：百分比应包含2位小数。
 """
+#Part A
+code_list = []
+
+for call in calls:
+#Check the outgoing number is form Bangalore or not.
+    area_code = ""
+    if call[0][:5] == "(080)":
+#Check the incoming number is fixed line or mobile.
+        if call[1][:1] == "(":
+            r_bracket_index = call[1].index(")")
+            area_code = call[1][1:r_bracket_index]
+        else:
+            area_code = call[1][:4]
+#Append area codes to the list except for duplication
+        if area_code not in code_list:
+            code_list.append(area_code)
+
+code_list = sorted(code_list)
+print("The numbers called by people in Bangalore have codes:")
+for list_item in code_list:
+    print("{}".format(list_item))
+
+#Part B
