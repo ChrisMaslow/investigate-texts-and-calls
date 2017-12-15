@@ -63,8 +63,14 @@ for list_item in code_list:
 
 #Part B
 bgl_local = 0
+bgl_outgoing = 0
 
 #Count Bangalore local calls.
 for call in calls:
     if call[0][:5] == "(080)" == call[1][:5]:
         bgl_local += 1
+    elif call[0][:5] == "(080)":
+        bgl_outgoing += 1
+
+percentage = bgl_local / bgl_outgoing
+print("{} percent of calls from fixed lines in Bangalore are callsto other fixed lines in Bangalore.".format('%.2f%%' % (percentage * 100)))
