@@ -41,10 +41,10 @@ to other fixed lines in Bangalore."
 """
 #Part A
 code_list = []
+area_code = ""
 
 for call in calls:
 #Check the outgoing number is form Bangalore or not.
-    area_code = ""
     if call[0][:5] == "(080)":
 #Check the incoming number is fixed line or mobile.
         if call[1][:1] == "(":
@@ -62,3 +62,9 @@ for list_item in code_list:
     print("{}".format(list_item))
 
 #Part B
+bgl_local = 0
+
+#Count Bangalore local calls.
+for call in calls:
+    if call[0][:5] == "(080)" == call[1][:5]:
+        bgl_local += 1
