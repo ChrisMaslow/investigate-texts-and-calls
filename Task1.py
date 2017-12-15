@@ -11,8 +11,15 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
+"""
+任务1：
+短信和通话记录中一共有多少电话号码？每个号码只统计一次。
+输出信息：
+"There are <count> different telephone numbers in the records."
+"""
 diff_num = []
 
+#This function check is current number a differnt number.
 def check_num(num):
     if num not in diff_num:
         diff_num.append(num)
@@ -26,10 +33,3 @@ for call in calls:
     check_num(call[1])
 
 print("There are {} different telephone numbers in the records.".format(len(diff_num)))
-
-"""
-任务1：
-短信和通话记录中一共有多少电话号码？每个号码只统计一次。
-输出信息：
-"There are <count> different telephone numbers in the records."
-"""
