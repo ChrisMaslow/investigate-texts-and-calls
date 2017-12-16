@@ -27,20 +27,27 @@ with open('calls.csv', 'r') as f:
 """
 
 
+# 不收集重复的电话号码
+def collect_or_not(num):
+    if num not in compare_list:
+        compare_list.append(num)
+
+
+# 收集被叫和收、发短信的电话号码
 def collect_number():
-    num_list = []
     for call in calls:
-        num_list.append(call[1])
+        collect_or_not(call[1])
 
     for text in texts:
-        num_list.append(text[0])
-        num_list.append(text[1])
+        collect_or_not(text[0])
+        collect_or_not(text[1])
 
-    return num_list
 
-compare_list = collect_number()
+compare_list = []
 telemkt_list = []
+collect_number()
 
+# 判断并收集疑似电话推销号码
 for call in calls:
     if call[0] not in compare_list:
         if call[0] not in telemkt_list:
@@ -49,4 +56,4 @@ for call in calls:
 telemkt_list = sorted(telemkt_list)
 print("These numbers could be telemarketers: ")
 for num in telemkt_list:
-    print("{}".format(num))
+    print(num)
