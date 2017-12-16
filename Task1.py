@@ -17,13 +17,13 @@ with open('calls.csv', 'r') as f:
 输出信息：
 "There are <count> different telephone numbers in the records."
 """
-diff_num = []
 
-#This function check is current number a differnt number.
+
 def check_num(num):
     if num not in diff_num:
         diff_num.append(num)
 
+diff_num = []
 for text in texts:
     check_num(text[0])
     check_num(text[1])
@@ -32,4 +32,5 @@ for call in calls:
     check_num(call[0])
     check_num(call[1])
 
-print("There are {} different telephone numbers in the records.".format(len(diff_num)))
+message = "There are {} different telephone numbers in the records."
+print(message.format(len(diff_num)))

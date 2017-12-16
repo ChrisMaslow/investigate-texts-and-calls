@@ -26,19 +26,21 @@ total_times = {}
 longest_time = 0
 goal_num = ""
 
-def add_to_dic(num,during):
+
+def add_to_dic(num, during):
     if num not in total_times:
         total_times[num] = int(during)
     else:
         total_times[num] += int(during)
 
 for call in calls:
-    add_to_dic(call[0],call[3])
-    add_to_dic(call[1],call[3])
+    add_to_dic(call[0], call[3])
+    add_to_dic(call[1], call[3])
 
 for number in total_times.keys():
     if longest_time < total_times[number]:
         longest_time = total_times[number]
         goal_num = number
 
-print("{} spent the longest time, {} seconds, on the phone during September 2016.".format(goal_num,longest_time))
+message = "{} spent the longest time, {} seconds, on the phone during September 2016."
+print(message.format(goal_num, longest_time))

@@ -39,20 +39,20 @@ with open('calls.csv', 'r') as f:
 to other fixed lines in Bangalore."
 注意：百分比应包含2位小数。
 """
-#Part A
+# Part A
 code_list = []
 area_code = ""
 
 for call in calls:
-#Check the outgoing number is form Bangalore or not.
+    # Check the outgoing number is form Bangalore or not.
     if call[0][:5] == "(080)":
-#Check the incoming number is fixed line or mobile.
+        # Check the incoming number is fixed line or mobile.
         if call[1][:1] == "(":
             r_bracket_index = call[1].index(")")
             area_code = call[1][1:r_bracket_index]
         else:
             area_code = call[1][:4]
-#Append area codes to the list except for duplication
+        # Append area codes to the list except for duplication
         if area_code not in code_list:
             code_list.append(area_code)
 
@@ -61,11 +61,11 @@ print("The numbers called by people in Bangalore have codes:")
 for list_item in code_list:
     print("{}".format(list_item))
 
-#Part B
+# Part B
 bgl_local = 0
 bgl_outgoing = 0
 
-#Count Bangalore local calls.
+# Count Bangalore local calls.
 for call in calls:
     if call[0][:5] == "(080)" == call[1][:5]:
         bgl_local += 1
@@ -73,4 +73,5 @@ for call in calls:
         bgl_outgoing += 1
 
 percentage = bgl_local / bgl_outgoing
-print("{} percent of calls from fixed lines in Bangalore are callsto other fixed lines in Bangalore.".format('%.2f%%' % (percentage * 100)))
+message = "{} percent of calls from fixed lines in Bangalore are callsto other fixed lines in Bangalore."
+print(message.format('%.2f%%' % (percentage * 100)))
