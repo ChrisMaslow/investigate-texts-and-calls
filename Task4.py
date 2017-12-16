@@ -26,3 +26,18 @@ with open('calls.csv', 'r') as f:
 电话号码不能重复，每行打印一条，按字典顺序排序后输出。
 """
 
+incoming_list = []
+sending_list = []
+receiving_list = []
+
+def collect_incoming():
+    for call in calls:
+        incoming_list.append(call[1])
+
+def collect_sending():
+    for text in texts:
+        incoming_list.append(text[0])
+
+def collect_receiving():
+    for text in texts:
+        incoming_list.append(text[1])
