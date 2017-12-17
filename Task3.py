@@ -44,31 +44,33 @@ code_list = []
 area_code = ""
 
 for call in calls:
-    # Check the outgoing number is form Bangalore or not.
+    # 判断主叫号码是否来自班加罗尔。
     if call[0][:5] == "(080)":
-        # Check the incoming number is fixed line or mobile.
+        # 判断被叫号码是固话还是手机。
         if call[1][:1] == "(":
+            # 返回右括弧的 index
             r_bracket_index = call[1].index(")")
             area_code = call[1][1:r_bracket_index]
         else:
             area_code = call[1][:4]
-        # Append area codes to the list except for duplication
+        # 不收集重复的电话号码
         if area_code not in code_list:
             code_list.append(area_code)
 
 code_list = sorted(code_list)
 print("The numbers called by people in Bangalore have codes:")
 for list_item in code_list:
-    print("{}".format(list_item))
+    print(list_item)
 
 # Part B
 bgl_local = 0
 bgl_outgoing = 0
 
-# Count Bangalore local calls.
 for call in calls:
+    # 统计班加罗尔本地通话数量。
     if call[0][:5] == "(080)" == call[1][:5]:
         bgl_local += 1
+    # 统计从班加罗尔打出的通话数量。
     elif call[0][:5] == "(080)":
         bgl_outgoing += 1
 

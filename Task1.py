@@ -19,18 +19,19 @@ with open('calls.csv', 'r') as f:
 """
 
 
-def check_num(num):
+# 不收集重复的电话号码
+def append_or_not(num):
     if num not in diff_num:
         diff_num.append(num)
 
 diff_num = []
 for text in texts:
-    check_num(text[0])
-    check_num(text[1])
+    append_or_not(text[0])
+    append_or_not(text[1])
 
 for call in calls:
-    check_num(call[0])
-    check_num(call[1])
+    append_or_not(call[0])
+    append_or_not(call[1])
 
 message = "There are {} different telephone numbers in the records."
 print(message.format(len(diff_num)))
